@@ -1,0 +1,277 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+	<div class="min-h-screen flex">
+		<!-- Left Side - Form -->
+		<div class="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-white">
+			<div class="max-w-md w-full space-y-8">
+				<div>
+					<h2 class="text-4xl font-bold text-gray-900 mb-8">Ready to start?</h2>
+				</div>
+
+				<form class="space-y-6" action="#" method="POST">
+					<div>
+						<input
+							id="fullname"
+							name="fullname"
+							type="text"
+							required
+							class="w-full px-4 py-4 bg-gray-100 border-0 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:bg-white transition-colors"
+							placeholder="Full name"
+						>
+					</div>
+
+					<div>
+						<input
+							id="email"
+							name="email"
+							type="email"
+							required
+							class="w-full px-4 py-4 bg-gray-100 border-0 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:bg-white transition-colors"
+							placeholder="E-mail"
+						>
+					</div>
+
+					<div>
+						<input
+							id="phone"
+							name="phone"
+							type="tel"
+							required
+							class="w-full px-4 py-4 bg-gray-100 border-0 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:bg-white transition-colors"
+							placeholder="Phone number"
+						>
+					</div>
+
+					<div>
+						<input
+							id="password"
+							name="password"
+							type="password"
+							required
+							class="w-full px-4 py-4 bg-gray-100 border-0 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:bg-white transition-colors"
+							placeholder="Password"
+						>
+					</div>
+
+					<!-- Farmer Type Selection -->
+					<div class="space-y-4">
+						<div class="flex items-center">
+							<input
+								id="small-scale"
+								name="farmer-type"
+								type="radio"
+								value="small-scale"
+								class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300"
+							>
+							<label for="small-scale" class="ml-3 text-gray-700">
+								I'm a small-scale farmer
+							</label>
+						</div>
+						<div class="flex items-center">
+							<input
+								id="medium-scale"
+								name="farmer-type"
+								type="radio"
+								value="medium-scale"
+								class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300"
+							>
+							<label for="medium-scale" class="ml-3 text-gray-700">
+								I'm a medium-scale farmer
+							</label>
+						</div>
+					</div>
+
+					<div>
+						<button
+							type="submit"
+							class="w-full flex justify-center py-4 px-4 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
+						>
+							Create account
+						</button>
+					</div>
+
+					<div class="text-center">
+						<p class="text-gray-600">
+							Already have an account?
+							<a href="/signin" class="font-semibold text-gray-900 hover:text-green-600 transition-colors">Sign in</a>
+						</p>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<!-- Right Side - Image -->
+		<div class="hidden lg:block lg:flex-1 relative">
+			<div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=80');">
+			</div>
+		</div>
+	</div>
+
+	<!-- Responsive JavaScript for form handling -->
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const form = document.querySelector('form');
+			const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="password"]');
+
+			// Add focus effects
+			inputs.forEach(input => {
+				input.addEventListener('focus', function() {
+					this.parentElement.classList.add('focused');
+				});
+
+				input.addEventListener('blur', function() {
+					this.parentElement.classList.remove('focused');
+				});
+			});
+
+			// Form validation
+			function validateEmail(email) {
+				const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				return re.test(email);
+			}
+
+			function validatePhone(phone) {
+				const re = /^[\+]?[1-9][\d]{0,15}$/;
+				return re.test(phone.replace(/\s/g, ''));
+			}
+
+			// Form submission
+			form.addEventListener('submit', function(e) {
+				e.preventDefault();
+
+				const fullname = document.getElementById('fullname').value;
+				const email = document.getElementById('email').value;
+				const phone = document.getElementById('phone').value;
+				const password = document.getElementById('password').value;
+				const farmerType = document.querySelector('input[name="farmer-type"]:checked');
+
+				// Validation
+				if (!fullname || !email || !phone || !password) {
+					alert('Please fill in all fields');
+					return;
+				}
+
+				if (!validateEmail(email)) {
+					alert('Please enter a valid email address');
+					return;
+				}
+
+				if (!validatePhone(phone)) {
+					alert('Please enter a valid phone number');
+					return;
+				}
+
+				if (password.length < 6) {
+					alert('Password must be at least 6 characters long');
+					return;
+				}
+
+				if (!farmerType) {
+					alert('Please select your farmer type');
+					return;
+				}
+
+				// Add your registration logic here
+				console.log('Sign up attempt:', {
+					fullname,
+					email,
+					phone,
+					password,
+					farmerType: farmerType.value
+				});
+
+				// For demo purposes, redirect to sign in page
+				alert('Account created successfully! Please sign in.');
+				window.location.href = '/signin';
+			});
+
+			// Phone number formatting
+			const phoneInput = document.getElementById('phone');
+			phoneInput.addEventListener('input', function(e) {
+				let value = e.target.value.replace(/\D/g, '');
+				if (value.length >= 10) {
+					value = value.substring(0, 15);
+				}
+				e.target.value = value;
+			});
+		});
+	</script>
+
+	<style>
+		/* Additional responsive styles for mobile */
+		@media (max-width: 1024px) {
+			.min-h-screen {
+				background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=80');
+				background-size: cover;
+				background-position: center;
+				background-attachment: fixed;
+			}
+
+			.flex-1 {
+				background-color: rgba(255, 255, 255, 0.95);
+				backdrop-filter: blur(10px);
+			}
+		}
+
+		/* Smooth transitions */
+		input {
+			transition: all 0.3s ease;
+		}
+
+		input:focus {
+			transform: translateY(-1px);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		}
+
+		.focused {
+			transform: scale(1.02);
+		}
+
+		/* Radio button styling */
+		input[type="radio"] {
+			transform: none;
+		}
+
+		input[type="radio"]:focus {
+			transform: none;
+			box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+		}
+
+		/* Custom radio button styling */
+		input[type="radio"] {
+			appearance: none;
+			background-color: #fff;
+			margin: 0;
+			font: inherit;
+			color: currentColor;
+			width: 1rem;
+			height: 1rem;
+			border: 2px solid #d1d5db;
+			border-radius: 50%;
+			display: grid;
+			place-content: center;
+		}
+
+		input[type="radio"]::before {
+			content: "";
+			width: 0.5rem;
+			height: 0.5rem;
+			border-radius: 50%;
+			transform: scale(0);
+			transition: 120ms transform ease-in-out;
+			box-shadow: inset 1rem 1rem #22c55e;
+			background-color: #22c55e;
+		}
+
+		input[type="radio"]:checked::before {
+			transform: scale(1);
+		}
+
+		input[type="radio"]:checked {
+			border-color: #22c55e;
+		}
+	</style>
+</Layout>

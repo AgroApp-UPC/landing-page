@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+	<div class="min-h-screen flex">
+		<!-- Left Side - Form -->
+		<div class="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-white">
+			<div class="max-w-md w-full space-y-8">
+				<div>
+					<h2 class="text-4xl font-bold text-gray-900 mb-8">Welcome Back!</h2>
+				</div>
+
+				<form class="space-y-6" action="#" method="POST">
+					<div>
+						<input
+							id="username"
+							name="username"
+							type="text"
+							required
+							class="w-full px-4 py-4 bg-gray-100 border-0 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:bg-white transition-colors"
+							placeholder="Username"
+						>
+					</div>
+
+					<div>
+						<input
+							id="password"
+							name="password"
+							type="password"
+							required
+							class="w-full px-4 py-4 bg-gray-100 border-0 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:bg-white transition-colors"
+							placeholder="Password"
+						>
+					</div>
+
+					<div>
+						<button
+							type="submit"
+							class="w-full flex justify-center py-4 px-4 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
+						>
+							Sign in
+						</button>
+					</div>
+
+					<div class="text-center">
+						<p class="text-gray-600">
+							Don't have an account?
+							<a href="/signup" class="font-semibold text-gray-900 hover:text-green-600 transition-colors">Sign up</a>
+						</p>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<!-- Right Side - Image -->
+		<div class="hidden lg:block lg:flex-1 relative">
+			<div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=80');">
+			</div>
+		</div>
+	</div>
+
+	<!-- Responsive JavaScript for form handling -->
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const form = document.querySelector('form');
+			const inputs = document.querySelectorAll('input');
+
+			// Add focus effects
+			inputs.forEach(input => {
+				input.addEventListener('focus', function() {
+					this.parentElement.classList.add('focused');
+				});
+
+				input.addEventListener('blur', function() {
+					this.parentElement.classList.remove('focused');
+				});
+			});
+
+			// Form submission
+			form.addEventListener('submit', function(e) {
+				e.preventDefault();
+
+				const username = document.getElementById('username').value;
+				const password = document.getElementById('password').value;
+
+				if (username && password) {
+					// Add your authentication logic here
+					console.log('Sign in attempt:', { username, password });
+
+					// For demo purposes, redirect to main page
+					window.location.href = '/';
+				} else {
+					alert('Please fill in all fields');
+				}
+			});
+		});
+	</script>
+
+	<style>
+		/* Additional responsive styles for mobile */
+		@media (max-width: 1024px) {
+			.min-h-screen {
+				background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=80');
+				background-size: cover;
+				background-position: center;
+				background-attachment: fixed;
+			}
+
+			.flex-1 {
+				background-color: rgba(255, 255, 255, 0.95);
+				backdrop-filter: blur(10px);
+			}
+		}
+
+		/* Smooth transitions */
+		input {
+			transition: all 0.3s ease;
+		}
+
+		input:focus {
+			transform: translateY(-1px);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		}
+
+		.focused {
+			transform: scale(1.02);
+		}
+	</style>
+</Layout>

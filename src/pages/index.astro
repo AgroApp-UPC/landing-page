@@ -1,11 +1,543 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<!-- Fixed Navigation Bar -->
+	<nav class="fixed top-0 left-0 right-0 bg-gray-900 z-50">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex justify-between items-center h-16">
+				<div class="flex items-center">
+					<div class="flex items-center">
+						<div class="w-8 h-8 bg-green-500 rounded mr-2 flex items-center justify-center">
+							<span class="text-white text-lg">🌱</span>
+						</div>
+						<span class="text-xl font-bold text-white">agroapp</span>
+					</div>
+				</div>
+				<div class="hidden md:block">
+					<div class="ml-10 flex items-baseline space-x-8">
+						<a href="#home" class="text-white hover:text-green-400 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+						<a href="#features" class="text-white hover:text-green-400 px-3 py-2 text-sm font-medium transition-colors">Plans</a>
+						<a href="#contact" class="text-white hover:text-green-400 px-3 py-2 text-sm font-medium transition-colors">Contact us</a>
+					</div>
+				</div>
+				<div class="flex items-center space-x-4">
+					<a href="/signup" class="text-white hover:text-green-400 px-3 py-2 text-sm font-medium transition-colors">Sign up</a>
+					<a href="/signin" class="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-md text-sm font-medium transition-colors">Sign in</a>
+				</div>
+				<div class="md:hidden">
+					<button type="button" data-mobile-menu-button aria-expanded="false" class="bg-gray-700 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-300 hover:bg-gray-600 transition-colors">
+						<span class="sr-only">Open main menu</span>
+						<svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+						</svg>
+					</button>
+				</div>
+			</div>
+
+			<!-- Mobile menu -->
+			<div data-mobile-menu class="hidden md:hidden">
+				<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800 mt-2 rounded-md">
+					<a href="#home" class="text-white hover:text-green-400 block px-3 py-2 text-base font-medium transition-colors">Home</a>
+					<a href="#features" class="text-white hover:text-green-400 block px-3 py-2 text-base font-medium transition-colors">Plans</a>
+					<a href="#contact" class="text-white hover:text-green-400 block px-3 py-2 text-base font-medium transition-colors">Contact us</a>
+					<div class="pt-2 border-t border-gray-700">
+						<a href="/signup" class="text-white hover:text-green-400 block px-3 py-2 text-base font-medium transition-colors">Sign up</a>
+						<a href="/signin" class="bg-amber-600 hover:bg-amber-700 text-white block px-3 py-2 rounded-md text-base font-medium transition-colors">Sign in</a>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Hero Section with Overlaid Features -->
+	<section id="home" class="relative bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=80');">
+		<!-- Hero Content -->
+		<div class="relative z-10 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 pb-8 sm:pb-16 lg:pb-24">
+			<div class="text-center text-black max-w-4xl mx-auto">
+				<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight text-black">
+					Grow smarter every day,<br>
+					harvest better every season.
+				</h1>
+				<p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-gray-800 max-w-2xl mx-auto px-4">
+					A simple app that gives you clear recommendations to
+					keep your crops healthy and productive.
+				</p>
+				<div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4">
+					<a href="/signup" class="bg-amber-700 hover:bg-amber-800 text-white px-6 sm:px-8 py-3 rounded-full font-semibold transition-colors shadow-lg w-full sm:w-auto max-w-xs text-center">
+						Join now
+					</a>
+					<a href="/signin" class="border-2 border-gray-700 text-gray-700 bg-white hover:bg-gray-50 px-6 sm:px-8 py-3 rounded-full font-semibold transition-colors shadow-lg w-full sm:w-auto max-w-xs text-center">
+						Dashboard
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Tractor Image positioned on the right - Hidden on mobile for better layout -->
+		<div class="absolute right-4 top-1/2 transform -translate-y-1/2 hidden sm:block md:right-8 lg:right-16">
+			<div class="w-24 h-24 sm:w-32 sm:h-24 md:w-40 md:h-28 lg:w-48 lg:h-32 opacity-80">
+				<svg viewBox="0 0 200 120" class="w-full h-full text-red-600 fill-current">
+					<!-- Tractor Body -->
+					<rect x="60" y="60" width="80" height="30" rx="5" class="fill-red-500"/>
+					<!-- Cabin -->
+					<rect x="100" y="40" width="30" height="30" rx="3" class="fill-red-600"/>
+					<!-- Large Rear Wheel -->
+					<circle cx="120" cy="95" r="20" class="fill-gray-800"/>
+					<circle cx="120" cy="95" r="15" class="fill-gray-600"/>
+					<!-- Small Front Wheel -->
+					<circle cx="70" cy="90" r="12" class="fill-gray-800"/>
+					<circle cx="70" cy="90" r="8" class="fill-gray-600"/>
+					<!-- Exhaust -->
+					<rect x="85" y="30" width="4" height="20" class="fill-gray-700"/>
+				</svg>
+			</div>
+		</div>
+
+		<!-- Features Section Overlaid at Bottom -->
+		<div id="features" class="relative z-20 bg-white py-6 sm:py-8 md:py-12 lg:py-16">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-8 lg:gap-12">
+					<div class="text-center px-2 pb-6 sm:pb-0 border-b sm:border-b-0 border-gray-200">
+						<h3 class="text-lg sm:text-lg lg:text-xl font-bold text-gray-900 mb-4 sm:mb-4 leading-tight h-auto sm:h-16 flex items-center justify-center">
+							<span class="sm:hidden">Register your crops in minutes</span>
+							<span class="hidden sm:inline">Register your crops in<br>minutes</span>
+						</h3>
+						<p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+							<span class="sm:hidden">Add details like species, planting date, water use, and sunlight exposure to start receiving tailored recommendations.</span>
+							<span class="hidden sm:inline">Add details like species, planting<br>date, water use, and sunlight<br>exposure to start receiving<br>tailored recommendations.</span>
+						</p>
+					</div>
+
+					<div class="text-center px-2 pb-6 sm:pb-0 border-b sm:border-b-0 border-gray-200">
+						<h3 class="text-lg sm:text-lg lg:text-xl font-bold text-gray-900 mb-4 sm:mb-4 leading-tight h-auto sm:h-16 flex items-center justify-center">
+							<span class="sm:hidden">Clear alerts you can trust</span>
+							<span class="hidden sm:inline">Clear alerts you can<br>trust</span>
+						</h3>
+						<p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+							<span class="sm:hidden">Get personalized advice classified by risk levels so you know exactly when your crops need attention.</span>
+							<span class="hidden sm:inline">Get personalized advice classified<br>by risk levels so you know exactly<br>when your crops need attention.</span>
+						</p>
+					</div>
+
+					<div class="text-center px-2 pb-6 sm:pb-0 border-b sm:border-b-0 border-gray-200">
+						<h3 class="text-lg sm:text-lg lg:text-xl font-bold text-gray-900 mb-4 sm:mb-4 leading-tight h-auto sm:h-16 flex items-center justify-center">
+							<span class="sm:hidden">Farming Calendar so you never miss a key task</span>
+							<span class="hidden sm:inline">Farming Calendar so you<br>never miss a key task</span>
+						</h3>
+						<p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+							<span class="sm:hidden">Stay on track with reminders for watering, fertilizing, and harvesting, designed to fit each crop's growth cycle.</span>
+							<span class="hidden sm:inline">Stay on track with reminders for<br>watering, fertilizing, and<br>harvesting, designed to fit each<br>crop's growth cycle.</span>
+						</p>
+					</div>
+
+					<div class="text-center px-2">
+						<h3 class="text-lg sm:text-lg lg:text-xl font-bold text-gray-900 mb-4 sm:mb-4 leading-tight h-auto sm:h-16 flex items-center justify-center">
+							<span class="sm:hidden">Learn and share with others</span>
+							<span class="hidden sm:inline">Learn and share with<br>others</span>
+						</h3>
+						<p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+							<span class="sm:hidden">Access simple reports on your crops' progress and connect with fellow farmers to exchange tips and experiences.</span>
+							<span class="hidden sm:inline">Access simple reports on your<br>crops' progress and connect with<br>fellow farmers to exchange tips<br>and experiences.</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Two Column Features Section -->
+	<section class="py-20 bg-gray-50">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-16">
+				<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+					Designed for every farmer
+				</h2>
+			</div>
+
+			<div class="grid lg:grid-cols-2 gap-12">
+				<!-- Left Column - Simple tools -->
+				<div class="bg-orange-50 p-8 rounded-2xl">
+					<div class="text-center mb-8">
+						<h3 class="text-2xl font-bold text-gray-900 mb-4">Simple tools to grow with confidence</h3>
+						<p class="text-gray-700 mb-6">AgroApp helps small-scale farmers manage their crops with ease, offering clear recommendations and reminders that fit their daily routine.</p>
+					</div>
+
+					<div class="space-y-4 mb-8">
+						<div class="flex items-center">
+							<span class="text-orange-500 mr-3">🌱</span>
+							<span class="text-gray-700">Easy crop registration.</span>
+						</div>
+						<div class="flex items-center">
+							<span class="text-orange-500 mr-3">🌱</span>
+							<span class="text-gray-700">Personalized recommendations.</span>
+						</div>
+						<div class="flex items-center">
+							<span class="text-orange-500 mr-3">🌱</span>
+							<span class="text-gray-700">Automatic alerts for tasks.</span>
+						</div>
+						<div class="flex items-center">
+							<span class="text-orange-500 mr-3">🌱</span>
+							<span class="text-gray-700">A friendly interface.</span>
+						</div>
+					</div>
+
+					<div class="text-center">
+						<button class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-md font-semibold transition-colors">
+							Start growing!
+						</button>
+					</div>
+				</div>
+
+				<!-- Right Column - Smarter insights -->
+				<div class="bg-orange-50 p-8 rounded-2xl">
+					<div class="text-center mb-8">
+						<h3 class="text-2xl font-bold text-gray-900 mb-4">Smarter insights for bigger harvests</h3>
+						<p class="text-gray-700 mb-6">For farmers managing larger plots, AgroApp provides the tools to plan, track, and optimize production with data-driven insights.</p>
+					</div>
+
+					<div class="space-y-4 mb-8">
+						<div class="flex items-center">
+							<span class="text-orange-500 mr-3">🌾</span>
+							<span class="text-gray-700">Control multiple crops at once.</span>
+						</div>
+						<div class="flex items-center">
+							<span class="text-orange-500 mr-3">🌾</span>
+							<span class="text-gray-700">Generate simple reports.</span>
+						</div>
+						<div class="flex items-center">
+							<span class="text-orange-500 mr-3">🌾</span>
+							<span class="text-gray-700">Plan ahead with a built-in calendar.</span>
+						</div>
+						<div class="flex items-center">
+							<span class="text-orange-500 mr-3">🌾</span>
+							<span class="text-gray-700">Share knowledge with other farmers.</span>
+						</div>
+					</div>
+
+					<div class="text-center">
+						<button class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-md font-semibold transition-colors">
+							Start growing!
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	</section>
+
+	<!-- Contact Section -->
+	<section id="contact" class="py-20 bg-white">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="grid lg:grid-cols-2 gap-16 items-start">
+				<!-- Left Side - Contact Info -->
+				<div>
+					<h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">
+						Contact us
+					</h2>
+
+					<!-- AgroApp Section -->
+					<div class="mb-16">
+						<h3 class="text-2xl font-semibold text-gray-900 mb-8 text-center">AgroApp</h3>
+
+						<!-- Social Icons Row -->
+						<div class="flex justify-center space-x-6 mb-12">
+							<!-- Facebook -->
+							<a href="#" class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center hover:bg-green-300 transition-colors">
+								<svg class="w-6 h-6 text-green-700" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+								</svg>
+							</a>
+							<!-- TikTok -->
+							<a href="#" class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center hover:bg-green-300 transition-colors">
+								<svg class="w-6 h-6 text-green-700" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+								</svg>
+							</a>
+							<!-- Instagram -->
+							<a href="#" class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center hover:bg-green-300 transition-colors">
+								<svg class="w-6 h-6 text-green-700" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+								</svg>
+							</a>
+							<!-- X (Twitter) -->
+							<a href="#" class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center hover:bg-green-300 transition-colors">
+								<svg class="w-6 h-6 text-green-700" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+								</svg>
+							</a>
+						</div>
+
+						<!-- Contact Teams -->
+						<div class="grid grid-cols-2 gap-8">
+							<div class="text-center">
+								<h4 class="font-semibold text-gray-900 mb-1">Support Team</h4>
+								<p class="text-gray-600 text-sm">supportteam@agroapp.com</p>
+							</div>
+							<div class="text-center">
+								<h4 class="font-semibold text-gray-900 mb-1">Sales Team</h4>
+								<p class="text-gray-600 text-sm">salesteam@agroapp.com</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- AgroTech Section -->
+					<div>
+						<h3 class="text-2xl font-semibold text-gray-900 mb-8 text-center">AgroTech</h3>
+
+						<!-- Social Icons Row -->
+						<div class="flex justify-center space-x-6">
+							<!-- Facebook -->
+							<a href="#" class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center hover:bg-green-300 transition-colors">
+								<svg class="w-6 h-6 text-green-700" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+								</svg>
+							</a>
+							<!-- TikTok -->
+							<a href="#" class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center hover:bg-green-300 transition-colors">
+								<svg class="w-6 h-6 text-green-700" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+								</svg>
+							</a>
+							<!-- Instagram -->
+							<a href="#" class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center hover:bg-green-300 transition-colors">
+								<svg class="w-6 h-6 text-green-700" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+								</svg>
+							</a>
+							<!-- X (Twitter) -->
+							<a href="#" class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center hover:bg-green-300 transition-colors">
+								<svg class="w-6 h-6 text-green-700" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Right Side - Contact Form -->
+				<div class="bg-orange-50 p-8 rounded-2xl">
+					<h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Get in touch</h3>
+
+					<form class="space-y-4">
+						<div class="grid grid-cols-2 gap-4">
+							<input
+								type="text"
+								placeholder="Name"
+								class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent bg-white"
+							>
+							<input
+								type="text"
+								placeholder="Last name"
+								class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent bg-white"
+							>
+						</div>
+
+						<input
+							type="email"
+							placeholder="E-mail"
+							class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent bg-white"
+						>
+
+						<textarea
+							placeholder="Leave a comment"
+							rows="4"
+							class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-none bg-white"
+						></textarea>
+
+						<button class="w-full bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+							Contact me
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="bg-gray-900 text-white">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+			<div class="flex flex-col md:flex-row justify-between items-center">
+				<!-- Left Side - Logo and Social -->
+				<div class="flex items-center space-x-6 mb-4 md:mb-0">
+					<div class="flex items-center">
+						<div class="w-8 h-8 bg-green-500 rounded mr-3 flex items-center justify-center">
+							<span class="text-white text-lg">🌱</span>
+						</div>
+						<span class="text-xl font-bold text-white">agroapp</span>
+					</div>
+
+					<!-- Social Icons -->
+					<div class="flex space-x-3">
+						<!-- Facebook -->
+						<a href="#" class="text-gray-400 hover:text-white transition-colors">
+							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+							</svg>
+						</a>
+						<!-- TikTok -->
+						<a href="#" class="text-gray-400 hover:text-white transition-colors">
+							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+							</svg>
+						</a>
+						<!-- Instagram -->
+						<a href="#" class="text-gray-400 hover:text-white transition-colors">
+							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+							</svg>
+						</a>
+						<!-- X (Twitter) -->
+						<a href="#" class="text-gray-400 hover:text-white transition-colors">
+							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+							</svg>
+						</a>
+					</div>
+				</div>
+
+				<!-- Right Side - Links -->
+				<div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-12 text-center md:text-left">
+					<div>
+						<h3 class="text-gray-300 font-medium mb-2">Explore</h3>
+						<ul class="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-4 text-sm">
+							<li><a href="#" class="text-gray-400 hover:text-white transition-colors">About us</a></li>
+							<li><a href="#features" class="text-gray-400 hover:text-white transition-colors">Features</a></li>
+							<li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact us</a></li>
+						</ul>
+					</div>
+
+					<div>
+						<h3 class="text-gray-300 font-medium mb-2">Information</h3>
+						<ul class="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-4 text-sm">
+							<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms</a></li>
+							<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy</a></li>
+							<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Cookies</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Responsive JavaScript -->
+	<script>
+		// Mobile menu toggle functionality
+		document.addEventListener('DOMContentLoaded', function() {
+			const mobileMenuButton = document.querySelector('[data-mobile-menu-button]');
+			const mobileMenu = document.querySelector('[data-mobile-menu]');
+
+			if (mobileMenuButton && mobileMenu) {
+				mobileMenuButton.addEventListener('click', function() {
+					const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+					mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+					mobileMenu.classList.toggle('hidden');
+				});
+			}
+
+			// Smooth scrolling for anchor links
+			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+				anchor.addEventListener('click', function (e) {
+					e.preventDefault();
+					const target = document.querySelector(this.getAttribute('href'));
+					if (target) {
+						target.scrollIntoView({
+							behavior: 'smooth',
+							block: 'start'
+						});
+					}
+				});
+			});
+
+			// Handle window resize for responsive adjustments
+			let resizeTimer;
+			window.addEventListener('resize', function() {
+				clearTimeout(resizeTimer);
+				resizeTimer = setTimeout(function() {
+					// Close mobile menu on resize to desktop
+					if (window.innerWidth >= 768 && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+						mobileMenu.classList.add('hidden');
+						if (mobileMenuButton) {
+							mobileMenuButton.setAttribute('aria-expanded', 'false');
+						}
+					}
+				}, 250);
+			});
+
+			// Form submission handling (if needed)
+			const contactForm = document.querySelector('#contact form');
+			if (contactForm) {
+				contactForm.addEventListener('submit', function(e) {
+					e.preventDefault();
+					// Add your form submission logic here
+					console.log('Form submitted');
+				});
+			}
+
+			// Add loading states and transitions
+			document.body.classList.add('loaded');
+		});
+
+		// Intersection Observer for animations (optional)
+		if ('IntersectionObserver' in window) {
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('animate-in');
+					}
+				});
+			}, {
+				threshold: 0.1,
+				rootMargin: '0px 0px -50px 0px'
+			});
+
+			// Observe elements for animation
+			document.querySelectorAll('.features-grid > div, .contact-section').forEach(el => {
+				observer.observe(el);
+			});
+		}
+	</script>
+
+	<style>
+		/* Smooth scrolling */
+		html {
+			scroll-behavior: smooth;
+		}
+
+		/* Additional responsive styles */
+		@media (max-width: 640px) {
+			.hero-text {
+				font-size: 2.25rem !important;
+				line-height: 1.1 !important;
+			}
+
+			.hero-description {
+				font-size: 1rem !important;
+			}
+
+			.features-overlay {
+				padding: 1rem !important;
+			}
+		}
+
+		/* Smooth transitions */
+		.loaded * {
+			transition: opacity 0.3s ease, transform 0.3s ease;
+		}
+
+		/* Animation classes */
+		.animate-in {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		/* Initially hide elements for animation */
+		.features-grid > div,
+		.contact-section {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+	</style>
 </Layout>
